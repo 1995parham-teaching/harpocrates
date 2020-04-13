@@ -9,7 +9,7 @@ def get_info_from_csv(csv_file):
     lastname = students['نام خانوادگی'].to_list()  # getting students' lastnames.
     for i in range(len(student_names)):
         student_names[i] = (student_names[i] + " " + lastname[i]).replace('\u200c', " ")
-        student_names[i] = names[i].replace('\u200d', "")
+        student_names[i] = student_names[i].replace('\u200d', "")
     student_grades = students['نمره'].to_list()  # getting grades from csv
     email = students['ایمیل'].to_list()  # getting students' emails and converting them to a list
     return student_names, student_grades, email
@@ -29,8 +29,8 @@ def run_server(smtp_address, id, password):
 if __name__ == "__main__":
     # getting user's data
     smtp_server = input("Enter your smtp server address")
-    gmail_user = input("Enter you email's address")
-    gmail_password = input("Enter your email's password")
+    gmail_user = input("Enter you email address")
+    gmail_password = input("Enter your email password")
     sent_from = gmail_user
     # getting data from our csv file
     names, grades, emails = get_info_from_csv('sample.csv')
