@@ -13,7 +13,7 @@ is for when you want to send more than one grade.
  As you can see in [sample.csv](sample.csv) you should have a sheet like
  this(if your column names are different feel free to change them in code) and then 
  you can fill [subject.txt](subject.txt) and [body.txt](body.txt) with the text that 
- you want yo send as your email subject and it's body. You can change the text format
+ you want yo send as your email subject and its body. You can change the text format
  but you should put {name} and {grade} where you want the student's name and grade to be.
  
  ## send more than one grade
