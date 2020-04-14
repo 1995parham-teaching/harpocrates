@@ -14,9 +14,7 @@ def get_info_from_csv(csv_file):
     grade = students.iloc[2:, 3:12].to_dict()
     email = students['ایمیل'].to_list()  # getting students' emails and converting them to a list
     email = email[:-2]
-    print(email)
     for i in range(len(email)):
-        print(f"hi {student_names[i]} your email is {email[i]} and your grades are:")
         a_grade = []
         for g in grade:
             a_grade.append(f"{g} : {grade[g][i + 2]}")
@@ -59,8 +57,12 @@ if __name__ == "__main__":
             TEXT = body_file.read()
         to = [emails[i]]
     # Text of email
-        TEXT = TEXT.format(name=names[i], grade=grades[i])
+        g=""
+        for k in grades[i]:
+            g+= f'{k} \n'
+        TEXT = TEXT.format(name=names[i], grade=g)
         msg = 'Subject: {}\n\n{}'.format(SUBJECT, TEXT).encode('UTF_8')
+        # print(msg)
     # sending email to each student
         server.sendmail(sent_from, to[0], msg)
         print(f'Email number {i + 1} sent!')
