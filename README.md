@@ -8,14 +8,16 @@ There are two sample csv files that you can see [sample.csv](sample.csv) and
 [sample_more.csv](sample_more.csv) one of them contains only one grade and the other one
 is for when you want to send more than one grade.
 
-##send one grade
+## send one grade
+
  As you can see in [sample.csv](sample.csv) you should have a sheet like
  this(if your column names are different feel free to change them in code) and then 
  you can fill [subject.txt](subject.txt) and [body.txt](body.txt) with the text that 
  you want yo send as your email subject and it's body. You can change the text format
  but you should put {name} and {grade} where you want the student's name and grade to be.
  
- ##send more than one grade
+ ## send more than one grade
+ 
  Sometimes you want to send minor grades of an exercise or exam in addition to overall
  score. In this case you can use [more_grades.py](more_grades.py) with a sheet like 
  [sample_more.csv](sample_more.csv). In this case you can enter index of columns that you
@@ -23,7 +25,8 @@ is for when you want to send more than one grade.
  [subject.txt](subject.txt) and [more_body.txt](more_body.txt) you can run the program. The
  code write each grade in a seperate line in email text so dont worry.
  
- ##Enter smtp and email address
+ ## Enter smtp and email address
+ 
  After fixing sheets and changing txt files run the program and enter your smtp address
  and after that your email address and its password.
  Note that if you use gmail you must go to your google account and change 
