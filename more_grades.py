@@ -44,7 +44,7 @@ if __name__ == "__main__":
     gmail_password = input("Enter your email password")
     sent_from = gmail_user
     # getting data from our csv file
-    names, emails, grades = get_info_from_csv('HW2C.csv')
+    names, emails, grades = get_info_from_csv('Sample_more.csv')
 
     # making server and logging in to user's email
     server = run_server(smtp_server, gmail_user, gmail_password)
