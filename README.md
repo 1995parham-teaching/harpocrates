@@ -40,3 +40,9 @@ You just need to install pandas using [pip](https://pip.pypa.io/en/stable/) to r
 ```bash
 pip3 install pandas
 ```
+
+## examples
+Here you can see some examples of emails I sent from sample csv file:
+![example](example.png)     
+
+![example](more_example.png) 
