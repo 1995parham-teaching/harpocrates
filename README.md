@@ -20,10 +20,10 @@ is for when you want to send more than one grade.
  
  Sometimes you want to send minor grades of an exercise or exam in addition to overall
  score. In this case you can use [more_grades.py](more_grades.py) with a sheet like 
- [sample_more.csv](sample_more.csv). In this case you can enter index of columns that you
- want to get grades from them in code and then after editing subject and body text in
- [subject.txt](subject.txt) and [more_body.txt](more_body.txt) you can run the program. The
- code write each grade in a seperate line in email text so dont worry.
+ [sample_more.csv](sample_more.csv). Here you should enter index of columns that you
+ want to get grades from them in the code and then after editing subject and body text in
+ [subject.txt](subject.txt) and [more_body.txt](more_body.txt) you can run the program. 
+ The code writes each grade in a separate line in email text so dont worry.
  
  ## Enter smtp and email address
  
