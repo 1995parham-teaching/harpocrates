@@ -42,7 +42,7 @@ pip3 install pandas
 ```
 
 ## examples
-Here you can see some examples of emails I sent from sample csv file:
+Here you can see some examples of emails I sent from sample csv files:
 ![example](example.png)     
 
 ![example](more_example.png) 
