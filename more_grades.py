@@ -11,7 +11,7 @@ def get_info_from_csv(csv_file):
     for i in range(len(student_names)):
         student_names[i] = (student_names[i] + " " + lastname[i]).replace('\u200c', " ")
         student_names[i] = student_names[i].replace('\u200d', "")
-    grade = students.iloc[2:, 3:11].to_dict()
+    grade = students.iloc[2:, 3:12].to_dict()
     email = students['ایمیل'].to_list()  # getting students' emails and converting them to a list
     email = email[:-2]
     print(email)
