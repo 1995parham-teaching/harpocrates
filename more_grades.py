@@ -42,9 +42,9 @@ def run_server(smtp_address, id, password):
 
 if __name__ == "__main__":
     # getting user's data
-    smtp_server = input("Enter your smtp server address")
-    gmail_user = input("Enter you email address")
-    gmail_password = input("Enter your email password")
+    smtp_server = input("Enter your smtp server address: ")
+    gmail_user = input("Enter you email address: ")
+    gmail_password = input("Enter your email password: ")
     sent_from = gmail_user
     # getting data from our csv file
     names, emails, grades = get_info_from_csv("sample_more.csv")
