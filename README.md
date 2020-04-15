@@ -1,4 +1,5 @@
-# Email_grades_privately
+# Harpocrates
+>  The god of silence, secrets and confidentiality
 
 This is a python code to send each student's grade privately using 
 smtplib to send emails from python and pandas to deal with csv file
