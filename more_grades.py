@@ -6,13 +6,19 @@ import pandas as pd
 def get_info_from_csv(csv_file):
     all_grades = {}
     students = pd.read_csv(csv_file)  # reading csv file
-    student_names = students.loc[2:, 'نام'].to_list()  # getting students' names and adding them to a list.
-    lastname = students.loc[2:, 'نام خانوادگی'].to_list()  # getting students' lastnames.
+    student_names = students.loc[
+        2:, "نام"
+    ].to_list()  # getting students' names and adding them to a list.
+    lastname = students.loc[
+        2:, "نام خانوادگی"
+    ].to_list()  # getting students' lastnames.
     for i in range(len(student_names)):
-        student_names[i] = (student_names[i] + " " + lastname[i]).replace('\u200c', " ")
-        student_names[i] = student_names[i].replace('\u200d', "")
+        student_names[i] = (student_names[i] + " " + lastname[i]).replace("\u200c", " ")
+        student_names[i] = student_names[i].replace("\u200d", "")
     grade = students.iloc[2:, 3:12].to_dict()
-    email = students.loc[2:,'ایمیل'].to_list()  # getting students' emails and converting them to a list
+    email = students.loc[
+        2:, "ایمیل"
+    ].to_list()  # getting students' emails and converting them to a list
     for i in range(len(email)):
         a_grade = []
         for g in grade:
@@ -41,29 +47,29 @@ if __name__ == "__main__":
     gmail_password = input("Enter your email password")
     sent_from = gmail_user
     # getting data from our csv file
-    names, emails, grades = get_info_from_csv('sample_more.csv')
+    names, emails, grades = get_info_from_csv("sample_more.csv")
 
     # making server and logging in to user's email
     server = run_server(smtp_server, gmail_user, gmail_password)
 
     # reading subject of emails from txt file.
-    with open('subject.txt') as subject_file:
+    with open("subject.txt") as subject_file:
         SUBJECT = subject_file.read()
 
     # sending emails to each student one by one.
     for i in range(len(names)):
-        with open('more_body.txt') as body_file:
+        with open("more_body.txt") as body_file:
             TEXT = body_file.read()
         to = [emails[i]]
-    # Text of email
-        g=""
+        # Text of email
+        g = ""
         for k in grades[i]:
-            g+= f'{k} \n'
+            g += f"{k} \n"
         TEXT = TEXT.format(name=names[i], grade=g)
-        msg = 'Subject: {}\n\n{}'.format(SUBJECT, TEXT).encode('UTF_8')
+        msg = "Subject: {}\n\n{}".format(SUBJECT, TEXT).encode("UTF_8")
         # print(msg)
-    # sending email to each student
+        # sending email to each student
         server.sendmail(sent_from, to[0], msg)
-        print(f'Email number {i + 1} sent!')
+        print(f"Email number {i + 1} sent!")
     server.close()
     print("Finished.")
