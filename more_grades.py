@@ -1,5 +1,7 @@
 import smtplib
+
 import pandas as pd
+import yaml
 
 
 # getting information from csv file and returning them as lists.
@@ -7,18 +9,18 @@ def get_info_from_csv(csv_file):
     all_grades = {}
     students = pd.read_csv(csv_file)  # reading csv file
     student_names = students.loc[
-        2:, "نام"
-    ].to_list()  # getting students' names and adding them to a list.
+                    2:, "نام"
+                    ].to_list()  # getting students' names and adding them to a list.
     lastname = students.loc[
-        2:, "نام خانوادگی"
-    ].to_list()  # getting students' lastnames.
+               2:, "نام خانوادگی"
+               ].to_list()  # getting students' lastnames.
     for i in range(len(student_names)):
         student_names[i] = (student_names[i] + " " + lastname[i]).replace("\u200c", " ")
         student_names[i] = student_names[i].replace("\u200d", "")
     grade = students.iloc[2:, 3:12].to_dict()
     email = students.loc[
-        2:, "ایمیل"
-    ].to_list()  # getting students' emails and converting them to a list
+            2:, "ایمیل"
+            ].to_list()  # getting students' emails and converting them to a list
     for i in range(len(email)):
         a_grade = []
         for g in grade:
@@ -40,17 +42,25 @@ def run_server(smtp_address, id, password):
     return smtp
 
 
+def login(config_file):
+    with open(config_file, "r") as ymlfile:
+        cfg = yaml.load(ymlfile, Loader=yaml.Loader)
+    smtp_address = cfg["configs"]["smtp_address"]
+    email_id = cfg["configs"]["email_address"]
+    email_passwd = cfg["configs"]["password"]
+    return smtp_address, email_id, email_passwd
+
+
 if __name__ == "__main__":
-    # getting user's data
-    smtp_server = input("Enter your smtp server address: ")
-    gmail_user = input("Enter you email address: ")
-    gmail_password = input("Enter your email password: ")
-    sent_from = gmail_user
+    # getting user's data and logging in to user's email
+    smtp_server, email_user, email_password = login('config.yml')
+
+    sent_from = email_user
     # getting data from our csv file
     names, emails, grades = get_info_from_csv("sample_more.csv")
 
-    # making server and logging in to user's email
-    server = run_server(smtp_server, gmail_user, gmail_password)
+    # making server
+    server = run_server(smtp_server, email_user, email_password)
 
     # reading subject of emails from txt file.
     with open("subject.txt") as subject_file:
@@ -61,7 +71,6 @@ if __name__ == "__main__":
         with open("more_body.txt") as body_file:
             TEXT = body_file.read()
         to = [emails[i]]
-        # Text of email
         g = ""
         for k in grades[i]:
             g += f"{k} \n"

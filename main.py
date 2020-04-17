@@ -1,8 +1,11 @@
 import smtplib
 import pandas as pd
+import yaml
 
 
 # getting information from csv file and returning them as lists.
+
+
 def get_info_from_csv(csv_file):
     students = pd.read_csv(csv_file)  # reading csv file
     student_names = students[
@@ -30,17 +33,25 @@ def run_server(smtp_address, id, password):
     return smtp
 
 
+def login(config_file):
+    with open(config_file, "r") as ymlfile:
+        cfg = yaml.load(ymlfile, Loader=yaml.Loader)
+    smtp_address = cfg["configs"]["smtp_address"]
+    email_id = cfg["configs"]["email_address"]
+    email_passwd = cfg["configs"]["password"]
+    return smtp_address, email_id, email_passwd
+
+
 if __name__ == "__main__":
-    # getting user's data
-    smtp_server = input("Enter your smtp server address: ")
-    gmail_user = input("Enter you email address: ")
-    gmail_password = input("Enter your email password: ")
-    sent_from = gmail_user
+    # getting user's data and logging in to user's email
+    smtp_server, email_user, email_password = login('config.yml')
+
+    sent_from = email_user
     # getting data from our csv file
     names, grades, emails = get_info_from_csv("sample.csv")
 
-    # making server and logging in to user's email
-    server = run_server(smtp_server, gmail_user, gmail_password)
+    # making server
+    server = run_server(smtp_server, email_user, email_password)
 
     # reading subject of emails from txt file.
     with open("subject.txt") as subject_file:
