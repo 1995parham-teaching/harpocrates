@@ -1,4 +1,8 @@
-configs:
-    smtp_address: smtp.gmail.com
-    email_address: kiankr79@gmail.com
-    password: secret
+---
+course:
+  name: 'مبانی برنامه نویسی'
+  semester: 'بهار ۱۳۹۹'
+email:
+  server: smtp.gmail.com
+  username: parham.alvani@gmail.com
+  password: secret
