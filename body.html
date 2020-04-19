@@ -1,10 +1,24 @@
 <html>
   <body dir="rtl">
-    <h1>سلام {{ name }}</h1>
-
     <p>
-      نمره‌ی شما برابر است با
-      {{ grade }}
+      با سلام<br>
+      دانشجوی عزیز {{ name }}<br>
+      نمره تمرین شما
+    </p>
+    <table>
+      <tbody>
+        {% for name, grade in grades.items() %}
+        <tr>
+          <td>{{ name }}</td>
+          <td>{{ grade }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p>
+      در صورت هرگونه اعتراض یا مشکلی با ایمیل زیر در تماس باشید.<br>
+
+      <a href="mailto: email@gmail.com">Email Email</a>
     </p>
   </body>
 </html>
