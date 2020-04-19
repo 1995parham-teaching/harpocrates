@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "harpocrates"
+version = "0.1.0"
+description = "Sending grades of students privately from .csv file using python."
+authors = ["Parham Alvani <parham.alvani@gmail.com>"]
+license = "GPL-3.0-or-later"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pyyaml = "^5.3.1"
+click = "^7.1.1"
+jinja2 = "^2.11.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
