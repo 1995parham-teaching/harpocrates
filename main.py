@@ -1,6 +1,9 @@
 import smtplib
 import pandas as pd
 import yaml
+from jinja2 import Template
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 
 # getting information from csv file and returning them as lists.
@@ -44,7 +47,7 @@ def login(config_file):
 
 if __name__ == "__main__":
     # getting user's data and logging in to user's email
-    smtp_server, email_user, email_password = login('config.yml')
+    smtp_server, email_user, email_password = login("config.yml")
 
     sent_from = email_user
     # getting data from our csv file
@@ -55,18 +58,28 @@ if __name__ == "__main__":
 
     # reading subject of emails from txt file.
     with open("subject.txt") as subject_file:
-        SUBJECT = subject_file.read()
+        subject = subject_file.read()
 
     # sending emails to each student one by one.
+    with open("body.html") as body_file:
+        body = body_file.read()
+
     for i in range(len(names)):
-        with open("body.txt") as body_file:
-            TEXT = body_file.read()
-        to = [emails[i]]
+        to = emails[i]
+
+        message = MIMEMultipart("alternative")
+        message["Subject"] = subject
+        # message["From"] =
+        message["To"] = to
+
         # Text of email
-        TEXT = TEXT.format(name=names[i], grade=grades[i])
-        msg = "Subject: {}\n\n{}".format(SUBJECT, TEXT).encode("UTF_8")
+        tmpl = Template(body)
+        body = tmpl.render(name=names[i], grade=grades[i])
+
+        message.attach(MIMEText(body, "html"))
+
         # sending email to each student
-        server.sendmail(sent_from, to[0], msg)
+        server.sendmail(sent_from, to, message.as_string())
         print(f"Email number {i + 1} sent!")
     server.close()
     print("Finished.")
