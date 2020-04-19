@@ -10,3 +10,6 @@ python_version = "3.7"
 pyyaml = "*"
 jinja2 = "*"
 click = "*"
+
+[dev-packages]
+pytest = "*"
