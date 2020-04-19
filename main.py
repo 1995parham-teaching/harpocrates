@@ -47,24 +47,35 @@ def run_server(address, username, password):
     help="path to input csv file",
     type=click.File(mode="r"),
 )
-def main(input):
+@click.option(
+    "--body",
+    "-b",
+    default="body.html",
+    help="email's body in html",
+    type=click.File(mode="r"),
+)
+@click.option(
+    "--subject",
+    "-s",
+    default="subject.txt",
+    help="email's subject",
+    type=click.File(mode="r"),
+)
+def main(input, body, subject):
     # getting user's data and logging in to user's email
     cfg = config.load()
 
     # getting data from our csv file
-    print(f"Read information from {input}")
     names, grades, emails = get_info_from_csv(input)
 
     # making server
     mail_server = run_server(cfg.email.server, cfg.email.username, cfg.email.password)
 
     # reading subject of emails from txt file.
-    with open("subject.txt") as subject_file:
-        subject = subject_file.read()
+    subject = subject.read()
 
     # sending emails to each student one by one.
-    with open("body.html") as body_file:
-        body = body_file.read()
+    body = body.read()
 
     for i in range(len(names)):
         to = emails[i]
