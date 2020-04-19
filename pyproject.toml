@@ -2,7 +2,7 @@
 name = "harpocrates"
 version = "0.1.0"
 description = "Sending grades of students privately from .csv file using python."
-authors = ["Parham Alvani <parham.alvani@gmail.com>"]
+authors = ["Kian Kashfipour <kiankr79@gmail.com>", "Parham Alvani <parham.alvani@gmail.com>"]
 license = "GPL-3.0-or-later"
 
 [tool.poetry.dependencies]
