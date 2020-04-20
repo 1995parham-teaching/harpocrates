@@ -1,6 +1,7 @@
 import smtplib
 import click
 import csv
+import itertools
 from jinja2 import Template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -21,14 +22,9 @@ SKIPPED_ROWS = 2
 
 def get_info_from_csv(file) -> List[model.Student]:
     students = []
-    c = 0
 
     reader = csv.DictReader(file)
-    for row in reader:
-        if c < SKIPPED_ROWS:
-            c += 1
-            continue
-
+    for row in itertools.islice(reader, SKIPPED_ROWS, None):
         row.pop(STUDENT_ID_COLUMN)
         name = row.pop(FIRST_NAME_COLUMN) + " " + row.pop(LAST_NAME_COLUMN)
         email = row.pop(EMAIL_COLUMN)
