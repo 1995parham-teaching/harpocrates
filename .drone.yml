@@ -11,3 +11,4 @@ steps:
       - pip install poetry
       - poetry install -v
       - poetry run pytest
+      - poetry run mypy
