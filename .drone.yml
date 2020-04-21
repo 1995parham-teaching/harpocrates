@@ -1,0 +1,12 @@
+---
+name: default
+type: docker
+kind: pipeline
+
+
+steps:
+  - name: test
+    image: python
+    commands:
+      - pip install .
+      - pytest
