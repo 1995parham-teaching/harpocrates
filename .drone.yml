@@ -12,3 +12,9 @@ steps:
       - poetry install -v
       - poetry run pytest
       - poetry run mypy harpocrates
+
+  - name: run
+    image: python
+    commands:
+      - pip install .
+      - python3 harpocrates/main.py --help
