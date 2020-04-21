@@ -1,6 +1,8 @@
 # Harpocrates
 >  The god of silence, secrets and confidentiality
 
+[![Drone (cloud)](https://img.shields.io/drone/build/aut-ce/harpocrates.svg?style=flat-square)](https://cloud.drone.io/aut-ce/harpocrates)
+
 ## Introduction
 
 This is a python code to send each student's grade privately using
