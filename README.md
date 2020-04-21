@@ -1,4 +1,4 @@
-# Harpocrates
+# Harpocrates :speak_no_evil:
 >  The god of silence, secrets and confidentiality
 
 [![Drone (cloud)](https://img.shields.io/drone/build/aut-ce/harpocrates.svg?style=flat-square)](https://cloud.drone.io/aut-ce/harpocrates)
@@ -28,14 +28,14 @@ want to get grades from them in the code and then after editing subject and body
 [subject.txt](subject.txt) and [more_body.txt](more_body.txt) you can run the program.
 The code writes each grade in a separate line in email text so dont worry.
 
-## Enter smtp and email address
+## Enter SMTP/Email Address
 
 After fixing sheets and changing txt files run the program and enter your smtp address
 and after that your email address and its password.
 
 Note that if you use gmail you must go to your google account and change
 *Less secure app access* [here](https://myaccount.google.com/lesssecureapps) by turning on
-8Allow less secure apps8. Otherwise you need to use [application-specific passwords](https://support.google.com/accounts/answer/185833?hl=en).
+*Allow less secure apps*. Otherwise you need to use [application-specific passwords](https://support.google.com/accounts/answer/185833?hl=en).
 
 ## Installation
 
@@ -43,6 +43,7 @@ You just need to install pandas using [pip](https://pip.pypa.io/en/stable/) to r
 
 ```bash
 pip install .
+python3 harpocrates/main.py
 ```
 
 ## Examples
