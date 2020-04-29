@@ -5,7 +5,7 @@ import itertools
 from jinja2 import Template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import List
+from typing import List, Dict
 
 import config
 import model
@@ -21,14 +21,19 @@ SKIPPED_ROWS = 2
 
 
 def get_info_from_csv(file) -> List[model.Student]:
-    students = []
+    students: List[model.Student] = []
 
     reader = csv.DictReader(file)
     for row in itertools.islice(reader, SKIPPED_ROWS, None):
         row.pop(STUDENT_ID_COLUMN)
         name = row.pop(FIRST_NAME_COLUMN) + " " + row.pop(LAST_NAME_COLUMN)
         email = row.pop(EMAIL_COLUMN)
-        students.append(model.Student(name, email, row))
+
+        grades: Dict[str, int] = {}
+        for problem, grade in row.items():
+            grades[problem] = int(grade)
+
+        students.append(model.Student(name, email, grades))
 
     return students
 
@@ -69,7 +74,15 @@ def run_server(address, username, password):
     help="email's subject",
     type=click.File(mode="r"),
 )
-def main(input, body, subject):
+@click.option(
+    "--dry-run",
+    "-d",
+    default=False,
+    help="do not really send emails",
+    type=bool,
+    is_flag=True,
+)
+def main(input, body, subject, dry_run):
     # getting user's data and logging in to user's email
     cfg = config.load()
 
@@ -77,7 +90,10 @@ def main(input, body, subject):
     students = get_info_from_csv(input)
 
     # making server
-    mail_server = run_server(cfg.email.server, cfg.email.username, cfg.email.password)
+    if dry_run is False:
+        mail_server = run_server(
+            cfg.email.server, cfg.email.username, cfg.email.password
+        )
 
     # reading subject of emails from txt file.
     subject = subject.read()
@@ -95,15 +111,21 @@ def main(input, body, subject):
 
         # Text of email
         tmpl = Template(body)
-        body = tmpl.render(name=student.name, grades=student.grades)
+        rbody = tmpl.render(name=student.name, grades=student.grades)
 
-        message.attach(MIMEText(body, "html"))
+        message.attach(MIMEText(rbody, "html"))
 
         # sending email to each student
-        mail_server.sendmail(cfg.email.username, to, message.as_string())
-        print(f"Email sent to {student.name}!")
+        if dry_run is False:
+            mail_server.sendmail(cfg.email.username, to, message.as_string())
+            print(f"Email sent to {student.name}!")
+        else:
+            print(student)
+            print()
+            print(rbody)
 
-    mail_server.close()
+    if dry_run is False:
+        mail_server.close()
     print("Finished.")
 
 
