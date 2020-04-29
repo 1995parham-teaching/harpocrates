@@ -1,8 +1,9 @@
 from typing import Dict
+import dataclasses
 
 
+@dataclasses.dataclass(frozen=True, repr=True)
 class Student:
-    def __init__(self, name, email, grades={}):
-        self.name: str = name
-        self.email: str = email
-        self.grades: Dict[str, int] = grades
+    name: str
+    email: str
+    grades: Dict[str, int] = dataclasses.field(default_factory=dict)
