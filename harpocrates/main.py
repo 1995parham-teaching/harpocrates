@@ -31,7 +31,7 @@ def get_info_from_csv(file) -> List[model.Student]:
 
         grades: Dict[str, int] = {}
         for problem, grade in row.items():
-            grades[problem] = int(grade)
+            grades[problem] = float(grade)
 
         students.append(model.Student(name, email, grades))
 
