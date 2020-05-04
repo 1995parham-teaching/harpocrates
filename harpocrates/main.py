@@ -29,7 +29,7 @@ def get_info_from_csv(file) -> List[model.Student]:
         name = row.pop(FIRST_NAME_COLUMN) + " " + row.pop(LAST_NAME_COLUMN)
         email = row.pop(EMAIL_COLUMN)
 
-        grades: Dict[str, int] = {}
+        grades: Dict[str, float] = {}
         for problem, grade in row.items():
             grades[problem] = float(grade)
 
