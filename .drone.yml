@@ -12,6 +12,7 @@ steps:
       - poetry install -v
       - poetry run pytest
       - poetry run mypy harpocrates
+      - poetry run pylint harpocrates
 
   - name: run
     image: python
