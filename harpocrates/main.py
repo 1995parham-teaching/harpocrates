@@ -23,6 +23,9 @@ SKIPPED_ROWS = 2
 
 
 def get_info_from_csv(file) -> List[model.Student]:
+    """
+    parse given csv file to gather student information.
+    """
     students: List[model.Student] = []
 
     reader = csv.DictReader(file)

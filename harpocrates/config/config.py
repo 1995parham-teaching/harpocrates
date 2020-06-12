@@ -1,23 +1,25 @@
 import yaml
+import dataclasses
+import typing
 
 
-class Config:
-    def __init__(self, email=None, course=None):
-        self.email: Email = email
-        self.course: Course = course
-
-
+@dataclasses.dataclass
 class Email:
-    def __init__(self, username, password, server="stmp.gmail.com"):
-        self.username: str = username
-        self.password: str = password
-        self.server: str = server
+    username: str
+    password: str
+    server: str
 
 
+@dataclasses.dataclass
 class Course:
-    def __init__(self, name="", semester=""):
-        self.name: str = name
-        self.semester: str = semester
+    name: str
+    semester: str
+
+
+@dataclasses.dataclass
+class Config:
+    email: typing.Union[Email, None] = None
+    course: typing.Union[Course, None] = None
 
 
 def load() -> Config:
@@ -34,5 +36,7 @@ def load() -> Config:
             password=cfg["email"]["password"],
             server=cfg["email"]["server"],
         ),
-        course=Course(name=cfg["course"]["name"], semester=cfg["course"]["semester"]),
+        course=Course(
+            name=cfg["course"]["name"], semester=cfg["course"]["semester"]
+        ),
     )
