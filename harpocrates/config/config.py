@@ -1,3 +1,7 @@
+"""
+Configuration module load configuration from config.yml.
+"""
+
 import dataclasses
 import typing
 import yaml
@@ -5,6 +9,10 @@ import yaml
 
 @dataclasses.dataclass
 class Email:
+    """
+    Email SMTP client configuration.
+    """
+
     username: str
     password: str
     server: str
@@ -12,17 +20,28 @@ class Email:
 
 @dataclasses.dataclass
 class Course:
+    """
+    Course configuration.
+    """
+
     name: str
     semester: str
 
 
 @dataclasses.dataclass
 class Config:
+    """
+    Configuration structure.
+    """
+
     email: typing.Union[Email, None] = None
     course: typing.Union[Course, None] = None
 
 
 def load() -> Config:
+    """
+    Load configuration from config.yml into Config structure.
+    """
     cfg = {
         "email": {"server": "", "username": "", "password": ""},
         "course": {"name": "", "semester": ""},

@@ -1,3 +1,6 @@
+"""
+Harpocrates entry point
+"""
 import smtplib
 import csv
 import itertools
@@ -92,7 +95,10 @@ def run_server(address, username, password):
     is_flag=True,
 )
 def main(information, body, subject, dry_run):
-    # getting user's data and logging in to user's email
+    """
+    Main command of harpocrates that warps everything up.
+    """
+
     cfg = config.load()
 
     # getting data from our csv file
@@ -112,14 +118,14 @@ def main(information, body, subject, dry_run):
     body = body.read()
 
     for student in students:
-        to = student.email
+        destination = student.email
 
         message = MIMEMultipart("alternative")
         message[
             "Subject"
         ] = f"{cfg.course.name} - {cfg.course.semester}: {subject}"
         message["From"] = cfg.email.username
-        message["To"] = to
+        message["To"] = destination
 
         # Text of email
         tmpl = Template(body)
@@ -131,7 +137,9 @@ def main(information, body, subject, dry_run):
 
         # sending email to each student
         if dry_run is False:
-            mail_server.sendmail(cfg.email.username, to, message.as_string())
+            mail_server.sendmail(
+                cfg.email.username, destination, message.as_string()
+            )
             print(f"Email sent to {student.name}!")
         else:
             print(student)
