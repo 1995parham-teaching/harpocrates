@@ -60,7 +60,7 @@ def run_server(address, username, password):
 
 @click.command()
 @click.option(
-    "--input",
+    "--information",
     "-i",
     default="sample.csv",
     help="path to input csv file",
@@ -88,12 +88,12 @@ def run_server(address, username, password):
     type=bool,
     is_flag=True,
 )
-def main(input, body, subject, dry_run):
+def main(information, body, subject, dry_run):
     # getting user's data and logging in to user's email
     cfg = config.load()
 
     # getting data from our csv file
-    students = get_info_from_csv(input)
+    students = get_info_from_csv(information)
 
     # making server
     mail_server = None
