@@ -6,4 +6,5 @@ import dataclasses
 class Student:
     name: str
     email: str
-    grades: Dict[str, int] = dataclasses.field(default_factory=dict)
+    grades: Dict[str, float] = dataclasses.field(default_factory=dict)
+    note: str = ""
