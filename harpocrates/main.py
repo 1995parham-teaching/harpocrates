@@ -1,11 +1,12 @@
 import smtplib
-import click
 import csv
 import itertools
-from jinja2 import Template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from typing import List, Dict
+
+import click
+from jinja2 import Template
 
 import config
 import model
@@ -16,6 +17,7 @@ FIRST_NAME_COLUMN = "نام"
 LAST_NAME_COLUMN = "نام خانوادگی"
 STUDENT_ID_COLUMN = "شماره دانشجویی"
 EMAIL_COLUMN = "ایمیل"
+NOTE_COLUMN = "توضیحات"
 SKIPPED_ROWS = 2
 # please note that other columns consider as grades
 
@@ -29,11 +31,15 @@ def get_info_from_csv(file) -> List[model.Student]:
         name = row.pop(FIRST_NAME_COLUMN) + " " + row.pop(LAST_NAME_COLUMN)
         email = row.pop(EMAIL_COLUMN)
 
-        grades: Dict[str, int] = {}
+        note = ""
+        if NOTE_COLUMN in row:
+            note = row.pop(NOTE_COLUMN)
+
+        grades: Dict[str, float] = {}
         for problem, grade in row.items():
             grades[problem] = float(grade)
 
-        students.append(model.Student(name, email, grades))
+        students.append(model.Student(name, email, grades, note))
 
     return students
 
@@ -90,6 +96,7 @@ def main(input, body, subject, dry_run):
     students = get_info_from_csv(input)
 
     # making server
+    mail_server = None
     if dry_run is False:
         mail_server = run_server(
             cfg.email.server, cfg.email.username, cfg.email.password
@@ -105,13 +112,17 @@ def main(input, body, subject, dry_run):
         to = student.email
 
         message = MIMEMultipart("alternative")
-        message["Subject"] = f"{cfg.course.name} - {cfg.course.semester}: {subject}"
+        message[
+            "Subject"
+        ] = f"{cfg.course.name} - {cfg.course.semester}: {subject}"
         message["From"] = cfg.email.username
         message["To"] = to
 
         # Text of email
         tmpl = Template(body)
-        rbody = tmpl.render(name=student.name, grades=student.grades)
+        rbody = tmpl.render(
+            name=student.name, grades=student.grades, note=student.note
+        )
 
         message.attach(MIMEText(rbody, "html"))
 
