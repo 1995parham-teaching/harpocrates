@@ -1,12 +1,12 @@
 """
 Harpocrates entry point
 """
-import smtplib
 import csv
 import itertools
+import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import List, Dict
+from typing import Dict, List
 
 import click
 from jinja2 import Template
@@ -151,6 +151,5 @@ def main(information, body, subject, dry_run):
     print("Finished.")
 
 
-if __name__ == "__main__":
-    # pylint: disable=no-value-for-parameter
-    main()
+# pylint: disable=no-value-for-parameter
+main()
