@@ -1,5 +1,6 @@
 # Harpocrates :speak_no_evil:
->  The god of silence, secrets and confidentiality
+
+> The god of silence, secrets and confidentiality
 
 [![Drone (cloud)](https://img.shields.io/drone/build/aut-ce/harpocrates.svg?style=flat-square)](https://cloud.drone.io/aut-ce/harpocrates)
 
@@ -13,7 +14,7 @@ of grades and students' names.
 
 As you can see in [sample.csv](sample.csv) you should have a sheet like
 this (if your column names are different feel free to change them in code):
- 
+
 ```python
 FIRST_NAME_COLUMN = "نام"
 LAST_NAME_COLUMN = "نام خانوادگی"
@@ -22,7 +23,7 @@ EMAIL_COLUMN = "ایمیل"
 NOTE_COLUMN = "توضیحات"
 SKIPPED_ROWS = 2
 ```
- 
+
 then you can fill [subject.txt](subject.txt) and [body.html](body.html) with the text that
 you want yo send as your email subject and its body. e.g.
 
@@ -30,8 +31,8 @@ you want yo send as your email subject and its body. e.g.
 <html>
   <body dir="rtl">
     <p>
-      با سلام<br>
-      دانشجوی عزیز {{ name }}<br>
+      با سلام<br />
+      دانشجوی عزیز {{ name }}<br />
       نمره تمرین شما
     </p>
     <table>
@@ -45,7 +46,7 @@ you want yo send as your email subject and its body. e.g.
       </tbody>
     </table>
     <p>
-      در صورت هرگونه اعتراض یا مشکلی با ایمیل زیر در تماس باشید.<br>
+      در صورت هرگونه اعتراض یا مشکلی با ایمیل زیر در تماس باشید.<br />
 
       <a href="mailto:parham.alvani@gmail.com">Pahram Alvani</a>
     </p>
@@ -70,8 +71,8 @@ email:
 ```
 
 Note that if you use gmail you must go to your google account and change
-*Less secure app access* [here](https://myaccount.google.com/lesssecureapps) by turning on
-*Allow less secure apps*. Otherwise you need to use [application-specific passwords](https://support.google.com/accounts/answer/185833?hl=en).
+_Less secure app access_ [here](https://myaccount.google.com/lesssecureapps) by turning on
+_Allow less secure apps_. Otherwise you need to use [application-specific passwords](https://support.google.com/accounts/answer/185833?hl=en).
 
 ## Installation
 
@@ -79,10 +80,11 @@ You just need to install pandas using [pip](https://pip.pypa.io/en/stable/) to r
 
 ```bash
 pip install .
-python3 harpocrates/main.py
+python3 harpocrates
 ```
 
 ## Examples
+
 Here you can see some examples of emails I sent from sample csv files:
 
 ![example](img/example.png)
