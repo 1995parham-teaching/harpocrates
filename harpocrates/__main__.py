@@ -1,53 +1,15 @@
 """
 Harpocrates entry point
 """
-import csv
-import itertools
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import Dict, List
 
 import click
 from jinja2 import Template
 
 import config
-import model
-
-# getting information from csv file and returning them as lists.
-
-FIRST_NAME_COLUMN = "نام"
-LAST_NAME_COLUMN = "نام خانوادگی"
-STUDENT_ID_COLUMN = "شماره دانشجویی"
-EMAIL_COLUMN = "ایمیل"
-NOTE_COLUMN = "توضیحات"
-SKIPPED_ROWS = 2
-# please note that other columns consider as grades
-
-
-def get_info_from_csv(file) -> List[model.Student]:
-    """
-    parse given csv file to gather student information.
-    """
-    students: List[model.Student] = []
-
-    reader = csv.DictReader(file)
-    for row in itertools.islice(reader, SKIPPED_ROWS, None):
-        row.pop(STUDENT_ID_COLUMN)
-        name = row.pop(FIRST_NAME_COLUMN) + " " + row.pop(LAST_NAME_COLUMN)
-        email = row.pop(EMAIL_COLUMN)
-
-        note = ""
-        if NOTE_COLUMN in row:
-            note = row.pop(NOTE_COLUMN)
-
-        grades: Dict[str, float] = {}
-        for problem, grade in row.items():
-            grades[problem] = float(grade)
-
-        students.append(model.Student(name, email, grades, note))
-
-    return students
+import importer
 
 
 def run_server(address, username, password):
@@ -102,7 +64,7 @@ def main(information, body, subject, dry_run):
     cfg = config.load()
 
     # getting data from our csv file
-    students = get_info_from_csv(information)
+    students = importer.get_info_from_csv(information)
 
     # making server
     mail_server = None
@@ -136,7 +98,7 @@ def main(information, body, subject, dry_run):
         message.attach(MIMEText(rbody, "html"))
 
         # sending email to each student
-        if dry_run is False:
+        if mail_server is not None:
             mail_server.sendmail(
                 cfg.email.username, destination, message.as_string()
             )
@@ -146,7 +108,7 @@ def main(information, body, subject, dry_run):
             print()
             print(rbody)
 
-    if dry_run is False:
+    if mail_server is not None:
         mail_server.close()
     print("Finished.")
 

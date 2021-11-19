@@ -3,7 +3,7 @@ Configuration module load configuration from config.yml.
 """
 
 import dataclasses
-import typing
+
 import yaml
 
 
@@ -34,8 +34,8 @@ class Config:
     Configuration structure.
     """
 
-    email: typing.Union[Email, None] = None
-    course: typing.Union[Course, None] = None
+    email: Email
+    course: Course
 
 
 def load() -> Config:
@@ -46,7 +46,7 @@ def load() -> Config:
         "email": {"server": "", "username": "", "password": ""},
         "course": {"name": "", "semester": ""},
     }
-    with open("config.yml", "r") as ymlfile:
+    with open("config.yml", "r", encoding='utf8') as ymlfile:
         cfg = yaml.load(ymlfile, Loader=yaml.Loader)
 
     return Config(

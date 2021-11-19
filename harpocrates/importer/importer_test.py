@@ -1,7 +1,7 @@
 """
 Test import from csv
 """
-from main import get_info_from_csv
+from importer import get_info_from_csv
 
 
 def test_import():
