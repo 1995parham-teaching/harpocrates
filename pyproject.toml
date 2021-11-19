@@ -7,7 +7,7 @@ license = "GPL-3.0-or-later"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-pyyaml = "^5.3.1"
+pyyaml = "^5.4"
 click = "^7.1.1"
 jinja2 = "^2.11.2"
 
