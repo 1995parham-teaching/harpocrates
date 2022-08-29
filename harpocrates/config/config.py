@@ -46,7 +46,7 @@ def load() -> Config:
         "email": {"server": "", "username": "", "password": ""},
         "course": {"name": "", "semester": ""},
     }
-    with open("config.yml", "r", encoding='utf8') as ymlfile:
+    with open("config.yml", "r", encoding="utf8") as ymlfile:
         cfg = yaml.load(ymlfile, Loader=yaml.Loader)
 
     return Config(

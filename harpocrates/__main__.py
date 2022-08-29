@@ -5,6 +5,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+from rich import pretty
 import click
 from jinja2 import Template
 
@@ -60,15 +61,17 @@ def main(information, body, subject, dry_run):
     """
     Main command of harpocrates that warps everything up.
     """
+    pretty.install()
 
     cfg = config.load()
+    pretty.pprint(cfg)
 
     # getting data from our csv file
     students = importer.get_info_from_csv(information)
 
     # making server
     mail_server = None
-    if dry_run is False:
+    if not dry_run:
         mail_server = run_server(
             cfg.email.server, cfg.email.username, cfg.email.password
         )
@@ -104,9 +107,8 @@ def main(information, body, subject, dry_run):
             )
             print(f"Email sent to {student.name}!")
         else:
-            print(student)
-            print()
-            print(rbody)
+            pretty.pprint(student)
+            pretty.pprint(rbody)
 
     if mail_server is not None:
         mail_server.close()

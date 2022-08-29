@@ -8,7 +8,7 @@ def test_import():
     """
     Test import function with sample.csv
     """
-    with open("sample.csv", "r") as file:
+    with open("sample.csv", "r", encoding="utf-8") as file:
         students = get_info_from_csv(file)
         assert len(students) == 1
         assert students[0].name == "کیان کشفی پور"
