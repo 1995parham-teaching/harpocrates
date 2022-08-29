@@ -1,8 +1,14 @@
-# Harpocrates 🙊
+<h1 align="center">
+Harpocrates 🙊
+</h1>
+<h6 align="center">The god of silence, secrets and confidentiality</h6>
 
-> The god of silence, secrets and confidentiality
-
-[![Drone (cloud)](https://img.shields.io/drone/build/aut-ce/harpocrates.svg?style=flat-square)](https://cloud.drone.io/aut-ce/harpocrates)
+<p align="center">
+  <img src="https://img.shields.io/github/workflow/status/aut-ce/harpocrates/ci?label=ci&logo=github&style=for-the-badge" alt="GitHub Workflow Status">
+  <img alt="GitHub" src="https://img.shields.io/github/license/aut-ce/harpocrates?logo=gnu&style=for-the-badge">
+  <img alt="GitHub Pipenv locked Python version" src="https://img.shields.io/github/pipenv/locked/python-version/aut-ce/harpocrates?logo=python&style=for-the-badge">
+  <img alt="GitHub release (latest SemVer including pre-releases)" src="https://img.shields.io/github/v/release/aut-ce/harpocrates?include_prereleases&logo=github&style=for-the-badge">
+</p>
 
 ## Introduction
 
