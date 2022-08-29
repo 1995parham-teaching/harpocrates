@@ -7,6 +7,7 @@ name = "pypi"
 pyyaml = "*"
 click = "*"
 jinja2 = "*"
+rich = "*"
 
 [dev-packages]
 mypy = "*"
