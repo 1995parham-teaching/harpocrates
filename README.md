@@ -1,4 +1,4 @@
-# Harpocrates :speak_no_evil:
+# Harpocrates 🙊
 
 > The god of silence, secrets and confidentiality
 
@@ -24,8 +24,8 @@ NOTE_COLUMN = "توضیحات"
 SKIPPED_ROWS = 2
 ```
 
-then you can fill [subject.txt](subject.txt) and [body.html](body.html) with the text that
-you want yo send as your email subject and its body. e.g.
+Then you can fill [subject.txt](subject.txt) and [body.html](body.html) with the text that
+you want to send as your email subject and its body. e.g.
 
 ```html
 <html>
@@ -54,7 +54,7 @@ you want yo send as your email subject and its body. e.g.
 </html>
 ```
 
-As you can see, this is a jinja template and you have variables that is set for each student.
+As you can see, this is a jinja template, and you have variables that is set for each student.
 Please note that you can check the emails before actually sending them with `--dry-run` flag.
 
 ## Enter SMTP/Email Address
@@ -62,7 +62,7 @@ Please note that you can check the emails before actually sending them with `--d
 After fixing sheets and changing txt files run the program and enter your smtp address
 and after that your email address and its password in configuration file. e.g.
 
-```yml
+```yaml
 ---
 email:
   server: smtp.gmail.com
@@ -70,9 +70,10 @@ email:
   password: secret
 ```
 
-Note that if you use gmail you must go to your google account and change
+Note that if you use GMail you must go to your Google account and change
 _Less secure app access_ [here](https://myaccount.google.com/lesssecureapps) by turning on
-_Allow less secure apps_. Otherwise you need to use [application-specific passwords](https://support.google.com/accounts/answer/185833?hl=en).
+_Allow less secure apps_. Otherwise you need to use
+[application-specific passwords](https://support.google.com/accounts/answer/185833?hl=en).
 
 ## Installation
 
