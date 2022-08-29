@@ -1,0 +1,19 @@
+---
+name: ci
+on: push
+
+jobs:
+  test-python:
+    name: test python
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install pipenv
+      - run: pipenv harpocrates --dev -v
+      - run: pipenv run pytest
+      - run: pipenv run pyre
+      - run: pipenv run mypy .
+      - run: pipenv run pylint --enable-all-extensions --fail-under 8 harpocrates
