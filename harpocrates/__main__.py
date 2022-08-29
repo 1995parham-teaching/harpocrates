@@ -6,11 +6,15 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 from rich import pretty
+from rich.console import Console
+from rich.syntax import Syntax
 import click
 from jinja2 import Template
 
 import config
 import importer
+
+console = Console()
 
 
 def run_server(address, username, password):
@@ -107,8 +111,8 @@ def main(information, body, subject, dry_run):
             )
             print(f"Email sent to {student.name}!")
         else:
-            pretty.pprint(student)
-            pretty.pprint(rbody)
+            pretty.pprint(student, expand_all=True)
+            console.print(Syntax(rbody, "html", line_numbers=False))
 
     if mail_server is not None:
         mail_server.close()
