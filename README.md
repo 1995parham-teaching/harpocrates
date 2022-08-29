@@ -94,6 +94,6 @@ python3 harpocrates
 
 Here you can see some examples of emails I sent from sample csv files:
 
-![example](img/example.png)
+![example](.github/assets/example.png)
 
-![example](img/more_example.png)
+![example](.github/assets/more_example.png)
