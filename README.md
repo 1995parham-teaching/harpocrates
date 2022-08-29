@@ -87,6 +87,7 @@ You just need to install pandas using [pip](https://pip.pypa.io/en/stable/) to r
 
 ```bash
 pip install .
+cp config.example.yml config.yml
 python3 harpocrates
 ```
 
