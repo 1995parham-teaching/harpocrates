@@ -1,7 +1,6 @@
 """
 Student model
 """
-from typing import Dict
 import dataclasses
 
 
@@ -13,5 +12,5 @@ class Student:
 
     name: str
     email: str
-    grades: Dict[str, float] = dataclasses.field(default_factory=dict)
+    grades: dict[str, float] = dataclasses.field(default_factory=dict)
     note: str = ""

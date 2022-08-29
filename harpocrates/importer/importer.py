@@ -1,6 +1,5 @@
 import csv
 import itertools
-from typing import Dict, List
 
 import model
 
@@ -15,11 +14,11 @@ SKIPPED_ROWS = 2
 # please note that other columns consider as grades
 
 
-def get_info_from_csv(file) -> List[model.Student]:
+def get_info_from_csv(file) -> list[model.Student]:
     """
     parse given csv file to gather student information.
     """
-    students: List[model.Student] = []
+    students: list[model.Student] = []
 
     reader = csv.DictReader(file)
     for row in itertools.islice(reader, SKIPPED_ROWS, None):
@@ -31,7 +30,7 @@ def get_info_from_csv(file) -> List[model.Student]:
         if NOTE_COLUMN in row:
             note = row.pop(NOTE_COLUMN)
 
-        grades: Dict[str, float] = {}
+        grades: dict[str, float] = {}
         for problem, grade in row.items():
             grades[problem] = float(grade)
 
