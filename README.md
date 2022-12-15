@@ -4,7 +4,7 @@ Harpocrates 🙊
 <h6 align="center">The god of silence, secrets and confidentiality</h6>
 
 <p align="center">
-  <img src="https://img.shields.io/github/workflow/status/aut-ce/harpocrates/ci?label=ci&logo=github&style=for-the-badge" alt="GitHub Workflow Status">
+  <img src="https://img.shields.io/github/actions/workflow/status/aut-ce/harpocrates/ci.yml?label=ci&logo=github&style=for-the-badge&branch=main" alt="GitHub Workflow Status">
   <img alt="GitHub" src="https://img.shields.io/github/license/aut-ce/harpocrates?logo=gnu&style=for-the-badge">
   <img alt="GitHub Pipenv locked Python version" src="https://img.shields.io/github/pipenv/locked/python-version/aut-ce/harpocrates?logo=python&style=for-the-badge">
   <img alt="GitHub release (latest SemVer including pre-releases)" src="https://img.shields.io/github/v/release/aut-ce/harpocrates?include_prereleases&logo=github&style=for-the-badge">
