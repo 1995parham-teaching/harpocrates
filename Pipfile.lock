@@ -330,11 +330,11 @@
         },
         "types-pyyaml": {
             "hashes": [
-                "sha256:7f7da2fd11e9bc1e5e9eb3ea1be84f4849747017a59fc2eee0ea34ed1147c2e0",
-                "sha256:8f890028123607379c63550179ddaec4517dc751f4c527a52bb61934bf495989"
+                "sha256:1e94e80aafee07a7e798addb2a320e32956a373f376655128ae20637adb2655b",
+                "sha256:6840819871c92deebe6a2067fb800c11b8a063632eb4e3e755914e7ab3604e83"
             ],
             "index": "pypi",
-            "version": "==6.0.11"
+            "version": "==6.0.12.2"
         },
         "typing-extensions": {
             "hashes": [
