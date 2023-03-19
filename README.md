@@ -13,7 +13,7 @@ Harpocrates 🙊
 ## Introduction
 
 This is a python code to send each student's grade privately using
-`smtplib` to send emails from python and `csv` to deal with csv file
+`smtplib` to send emails from python and `csv` to deal with CSV file
 of grades and students' names.
 
 ## Send Grades
@@ -60,12 +60,12 @@ you want to send as your email subject and its body. e.g.
 </html>
 ```
 
-As you can see, this is a jinja template, and you have variables that is set for each student.
+As you can see, this is a Jinja template, and you have variables that is set for each student.
 Please note that you can check the emails before actually sending them with `--dry-run` flag.
 
 ## Enter SMTP/Email Address
 
-After fixing sheets and changing txt files run the program and enter your smtp address
+After fixing sheets and changing TXT files, run the program and enter your SMTP address
 and after that your email address and its password in configuration file. e.g.
 
 ```yaml
@@ -76,9 +76,9 @@ email:
   password: secret
 ```
 
-Note that if you use GMail you must go to your Google account and change
+Note that if you use Gmail you must go to your Google account and change
 _Less secure app access_ [here](https://myaccount.google.com/lesssecureapps) by turning on
-_Allow less secure apps_. Otherwise you need to use
+_Allow less secure apps_. Otherwise, you need to use
 [application-specific passwords](https://support.google.com/accounts/answer/185833?hl=en).
 
 ## Installation
@@ -93,8 +93,11 @@ python3 harpocrates
 
 ## Examples
 
-Here you can see some examples of emails I sent from sample csv files:
+Here you can see some examples of emails I sent from sample CSV files:
 
-![example](.github/assets/example.png)
+<p align="center">
+<img src=".github/assets/example.png" alt="example" />
 
-![example](.github/assets/more_example.png)
+<img src=".github/assets/more_example.png" alt="example" />
+
+</p>
