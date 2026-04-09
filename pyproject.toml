@@ -1,0 +1,41 @@
+[project]
+name = "harpocrates"
+version = "0.1.0"
+description = "The god of silence, secrets and confidentiality - send students' grades privately via email"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.14"
+authors = [
+    { name = "Parham Alvani", email = "parham.alvani@gmail.com" },
+]
+dependencies = [
+    "click",
+    "jinja2",
+    "pyyaml",
+    "rich",
+]
+
+[project.scripts]
+harpocrates = "harpocrates.__main__:main"
+
+[dependency-groups]
+dev = [
+    "mypy",
+    "pytest",
+    "ruff",
+    "ty",
+    "types-pyyaml",
+]
+
+[tool.ruff]
+target-version = "py314"
+
+[tool.ty.environment]
+python-version = "3.14"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["harpocrates"]

@@ -208,3 +208,7 @@ pip-selfcheck.json
 
 # End of https://www.gitignore.io/api/python,jetbrains+all,virtualenv
 config.yml
+
+# uv
+# uv.lock should be committed for applications; keep it tracked.
+

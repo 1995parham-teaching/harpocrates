@@ -6,7 +6,7 @@ Harpocrates 🙊
 <p align="center">
   <img src="https://img.shields.io/github/actions/workflow/status/1995parham-teaching/harpocrates/ci.yml?label=ci&logo=github&style=for-the-badge&branch=main" alt="GitHub Workflow Status">
   <img alt="GitHub" src="https://img.shields.io/github/license/1995parham-teaching/harpocrates?logo=gnu&style=for-the-badge">
-  <img alt="GitHub Pipenv locked Python version" src="https://img.shields.io/github/pipenv/locked/python-version/1995parham-teaching/harpocrates?logo=python&style=for-the-badge">
+  <img alt="Python version" src="https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2F1995parham-teaching%2Fharpocrates%2Fmain%2Fpyproject.toml&logo=python&style=for-the-badge">
   <img alt="GitHub release (latest SemVer including pre-releases)" src="https://img.shields.io/github/v/release/1995parham-teaching/harpocrates?include_prereleases&logo=github&style=for-the-badge">
 </p>
 
@@ -83,12 +83,12 @@ _Allow less secure apps_. Otherwise, you need to use
 
 ## Installation
 
-You just need to install pandas using [pip](https://pip.pypa.io/en/stable/) to run this program.
+This project uses [uv](https://docs.astral.sh/uv/) for dependency and environment management.
 
 ```bash
-pip install .
+uv sync
 cp config.example.yml config.yml
-python3 harpocrates
+uv run harpocrates
 ```
 
 ## Examples
